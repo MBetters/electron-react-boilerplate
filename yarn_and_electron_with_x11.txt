@@ -1,0 +1,23 @@
+Title: How to Start Electron GUI App from VS Code Remote Terminal?
+
+I'm using [electron-react-boilerplate][1] to start learning GUI app development. I'm doing remote development into an Ubuntu VM using VS Code's Remote extensions, so my goal is to run `yarn` commands all within the Integrated Terminal.
+
+Running `yarn` in the Integrated Terminal works fine to install dependencies. However, running `yarn dev` doesn't work. It only works if I go over to my GUI client window for my VM, spawn up a Terminal window, `cd` into the project, and run `yarn dev`, which will then start the GUI app. What I'd like to be able to do instead is run `yarn dev` from VS Code's Integrated Terminal and have the Electron GUI app start over in my VirtualBox GUI client. That way, I can see any `yarn dev` logs right in VS Code's Integrated Terminal.
+
+I'm imagining I'd have to do something with X11 to get this to work, but I don't know what. I'm gonna read the docs. How can a VS Code Integrated Terminal start GUI apps over in a VirtualBox GUI window?
+
+For reference, this is the `yarn dev` setting in electron-react-boilerplate's `package.json`:
+
+```json
+"dev": "cross-env START_HOT=1 node -r @babel/register ./internals/scripts/CheckPortInUse.js && cross-env START_HOT=1 yarn start-renderer-dev"
+```
+
+  [1]: https://github.com/electron-react-boilerplate/electron-react-boilerplate
+
+Answer:
+
+In `package.json`, change `dev` to:
+
+```json
+"dev": "cross-env START_HOT=1 node -r @babel/register ./internals/scripts/CheckPortInUse.js && cross-env START_HOT=1 DISPLAY=:1 yarn start-renderer-dev"
+```
