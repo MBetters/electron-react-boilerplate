@@ -27,7 +27,7 @@ pip install -U pipenv
 pipenv install --skip-lock --python $PY_VER
 
 # Install an iPython Kernel
-pipenv run python -m ipykernel install --user --name=icd153recorder
+pipenv run python -m ipykernel install --user --name=${PWD##*/}
 
 # Set up the nodeenv within the pipenv
 pipenv run nodeenv -p # Installs NodeJS and NPM into the project's pipenv
