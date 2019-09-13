@@ -6,6 +6,8 @@ import styles from './Home.css';
 
 type Props = {};
 
+// TODO: Change this to a Login screen.
+
 export default class Home extends Component<Props> {
   props: Props;
 
